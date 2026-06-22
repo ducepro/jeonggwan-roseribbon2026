@@ -1,0 +1,610 @@
+size<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>포토존 디자인 제안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:  #1a0f24;
+  --navy2: #27163a;
+  --navy3: #3a2252;
+  --navy4: #0f0918;
+
+  --gold:  #d6b07a;
+  --gold2: #c8944e;
+  --gold3: #f0d9a8;
+
+  --rose:  #d98ab6;
+  --rose2: #c56b9f;
+
+  --blue:  #4a9ebe;
+
+  --text:  #f5f0fa;
+  --text2: #d9cfe0;
+  --text3: #8a8096;
+  --stone: #c9b8cc;
+  --stone2:#b8a4bb;
+
+  --cream: #1e1128;
+  --cream2:rgba(201,168,76,.15);
+
+  --sh:  0 6px 32px rgba(10,5,20,.4);
+  --sh2: 0 2px 12px rgba(10,5,20,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--navy4);color:var(--text);line-height:1.7;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#f21a85;backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.2)}
+.nav-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:58px}
+.nav-brand{font-family:'Noto Serif KR',serif;font-size:1.1rem;font-weight:700;color:#ffd79f;text-decoration:none;letter-spacing:.03em}
+.nav-links{display:flex;list-style:none;gap:.2rem}
+.nav-links a{
+    display:block;
+    padding:.4rem;
+    font-size:.88rem;
+    font-weight:500;
+    color:#fdfcfc;
+    text-decoration:none;
+    border-radius:3px;
+}
+.nav-links a:hover{color:var(--gold2);background:rgba(201,168,76,.08)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.hbg span{display:block;width:20px;height:2px;background:var(--stone2);border-radius:2px}
+@media(max-width:700px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:rgba(13,27,42,.98);padding:.8rem 0}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.65rem 1.5rem}
+  .hbg{display:flex}
+}
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  position:relative;
+  overflow:hidden;
+  background:none;
+  padding-top:58px;
+}
+.hero-ovl{display:none;}
+.hero-body{
+  position:relative;
+  z-index:1;
+  width:40%;
+  padding:3rem 3.5rem 3rem 2.5rem;
+  text-align:left;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:100vh;
+}
+@media(max-width:700px){
+  .hero-body{
+    width:100%;
+    min-height:auto;
+    padding:2.5rem 1.5rem;
+    text-align:center;
+    align-items:center;
+    background:rgba(15,9,24,.25);
+  }
+}
+.hero-label{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;border:1px solid rgba(201,168,76,.4);padding:.3rem .9rem;border-radius:2px;margin-bottom:1.4rem}
+.hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;color:#ffd6ec;line-height:1.35;margin-bottom:1rem}
+.hero h1 em{font-style:normal; color:#ff5fb3;}
+.hero p{font-size:.92rem;color:var(--stone2);line-height:1.85;margin-bottom:2.2rem;max-width:380px}
+.hero-btns{display:flex;gap:.8rem;justify-content:flex-start;flex-wrap:wrap}
+@media(max-width:700px){.hero-btns{justify-content:center}}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background-image:url('images/back-head.png');
+  background-size:cover;
+  background-position:center center;
+  opacity:1;
+  z-index:0;
+}
+.btn-g{background:var(--gold);color:var(--navy);padding:.65rem 1.8rem;border-radius:3px;font-size:.84rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.btn-g:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-o{background:transparent;color:var(--stone2);padding:.65rem 1.8rem;border-radius:3px;font-size:.84rem;font-weight:500;text-decoration:none;border:1px solid rgba(180,200,216,.35);cursor:pointer;transition:border-color .2s,color .2s}
+.btn-o:hover{border-color:var(--stone2);color:#fff}
+.edit-btn{position:absolute;bottom:1.5rem;right:1.5rem;z-index:10;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.7);padding:.35rem .75rem;border-radius:20px;font-size:.7rem;cursor:pointer;display:flex;align-items:center;gap:.3rem;transition:background .2s}
+.edit-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.edit-panel{position:fixed;bottom:4.5rem;right:1.5rem;z-index:300;background:var(--navy);border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:1.4rem;width:276px;box-shadow:0 8px 40px rgba(0,0,0,.5);display:none}
+.edit-panel.open{display:block}
+.edit-panel h4{font-size:.72rem;font-weight:700;letter-spacing:.09em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem}
+.ep-close{position:absolute;top:.55rem;right:.65rem;background:none;border:none;color:var(--stone);cursor:pointer;font-size:1.1rem;line-height:1}
+.ep-close:hover{color:#fff}
+.ep-field{margin-bottom:.85rem}
+.ep-field label{display:block;font-size:.7rem;color:var(--stone);margin-bottom:.3rem}
+.ep-field input[type=text],.ep-field input[type=url]{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(180,200,216,.2);border-radius:3px;padding:.45rem .65rem;color:#fff;font-size:.78rem;font-family:inherit}
+.ep-field input:focus{outline:none;border-color:rgba(201,168,76,.5)}
+.ep-apply{width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:3px;padding:.5rem;font-size:.78rem;font-weight:700;cursor:pointer;margin-top:.2rem}
+.ep-apply:hover{background:var(--gold2)}
+.sec{padding:4.5rem 1.5rem}
+.wrap{max-width:1100px;margin:0 auto}
+.kicker{font-size:.68rem;font-weight:600;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
+.ttl{font-family:'Noto Serif KR',serif;font-size:clamp(1.45rem,2.8vw,2rem);font-weight:700;color:var(--text);margin-bottom:.8rem;line-height:1.3}
+.ttl.lt{color:#fff}
+.desc{font-size:.87rem;color:var(--text3);line-height:1.8;max-width:560px}
+.sh{margin-bottom:2.8rem}
+.dark{
+    background:linear-gradient(
+        to bottom,
+        #0f0918 0%,
+        #1a0f24 50%,
+        #27163a 100%
+    );
+}
+.alt{
+    background:linear-gradient(
+        to bottom,
+        #27163a 0%,
+        #322252 100%
+    );
+}
+.ov-g{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+@media(max-width:700px){.ov-g{grid-template-columns:1fr;gap:2rem}}
+.ov-img{border-radius:4px;overflow:hidden;box-shadow:var(--sh);aspect-ratio:4/3}
+.ov-img img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform .4s}
+.ov-img img:hover{transform:scale(1.03)}
+.spec-list{margin-top:1.8rem;border-top:2px solid rgba(232,192,122,.45)}
+.sr{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid rgba(201,168,76,.12);font-size:.83rem}
+.sl{color:var(--stone)}
+.sv{font-weight:600;color:var(--gold3)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1500px;margin:0 auto}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.cards{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,.05);border:2px solid rgba(201,168,76,.5);border-radius:6px;overflow:hidden;cursor:pointer;transition:transform .22s,box-shadow .22s;position:relative}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.card.rec{border-color:rgba(201,168,76,.5)}
+.bbadge{position:absolute;top:9px;right:9px;background:var(--gold);color:var(--navy);font-size:.58rem;font-weight:700;letter-spacing:.07em;padding:2px 6px;border-radius:2px;z-index:2}
+.dbadge{position:absolute;top:9px;left:9px;background:rgba(74,158,190,.82);color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.05em;padding:2px 6px;border-radius:2px;z-index:2}
+.ci{aspect-ratio:4/3;overflow:hidden}
+.ci img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card:hover .ci img{transform:scale(1.05)}
+.cb{padding:1rem 1.1rem}
+.ctag{font-size:.6rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:.3rem}
+.cname{font-family:'Noto Serif KR',serif;font-size:.92rem;font-weight:700;color:var(--gold3);margin-bottom:.35rem;line-height:1.3}
+.csum{font-size:.76rem;color:var(--stone);line-height:1.6}
+.det{padding:4rem 1.5rem;border-top:2.5px solid rgba(201,168,76,.12);background:var(--navy)}
+.det.alt{background:var(--navy2);}
+.det-g{display:flex;flex-direction:column;gap:2rem}
+.img-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+@media(max-width:600px){.img-row{grid-template-columns:1fr;gap:1rem}}
+.dim{
+  border-radius:4px;
+  overflow:hidden;
+  box-shadow:var(--sh2);
+  border:2px solid rgba(232,192,122,.45);
+}
+.dim img{width:100%;display:block;cursor:zoom-in;transition:transform .35s}
+.dim img:hover{transform:scale(1.02)}
+.di{background:rgba(255,255,255,.04);border-radius:4px;padding:1.8rem 2rem;border:1px solid rgba(201,168,76,.2);box-shadow:var(--sh2)}
+@media(max-width:600px){.di{padding:1.2rem 1rem}}
+.di-head{margin-bottom:1.4rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(201,168,76,.15)}
+.dbadge2{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:.75rem}
+.tag{font-size:.6rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:2px 7px;border-radius:2px}
+.ta{background:var(--gold);color:var(--navy)}
+.tb{background:var(--blue);color:#fff}
+.tc{background:#6b8fa3;color:#fff}
+.td{background:#7a9e85;color:#fff}
+.trec{font-size:.6rem;font-weight:700;color:var(--gold);border:1px solid var(--gold);padding:2px 6px;border-radius:2px}
+.tdiff{font-size:.6rem;font-weight:600;color:var(--blue);border:1px solid rgba(74,158,190,.5);padding:2px 6px;border-radius:2px}
+.dtitle{font-family:'Noto Serif KR',serif;font-size:1.3rem;font-weight:700;color:var(--gold3);margin-bottom:.4rem;line-height:1.3}
+.dsumm{font-size:.84rem;color:var(--gold);font-weight:500;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid rgba(201,168,76,.15)}
+.dblocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:900px){.dblocks{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.dblocks{grid-template-columns:1fr}}
+.db h5{font-size:.66rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+.db p{font-size:.83rem;color:var(--stone);line-height:1.8}
+.fl{list-style:none;display:flex;flex-direction:column;gap:.28rem}
+.fl li{font-size:.82rem;color:var(--text2);padding-left:.95rem;position:relative}
+.fl li::before{content:'·';position:absolute;left:0;color:var(--gold);font-weight:700}
+.fbox{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:4px;padding:.9rem 1rem}
+.fr{display:flex;justify-content:space-between;align-items:center;padding:.28rem 0}
+.flbl{font-size:.76rem;color:var(--text3)}
+.dots{display:flex;gap:3px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(13,27,42,.13)}
+.dot.g{background:var(--gold)}
+.dot.b{background:var(--blue)}
+.dnote{background:rgba(74,158,190,.1);border:1px solid rgba(74,158,190,.3);border-radius:4px;padding:.75rem .9rem;font-size:.77rem;color:#7dc5de;line-height:1.7;margin-top:.6rem}
+.rc{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);border-radius:8px;padding:2.5rem;border:1px solid rgba(201,168,76,.35);position:relative;overflow:hidden}
+.rc::before{content:'';position:absolute;top:-50px;right:-50px;width:150px;height:150px;background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);border-radius:50%}
+.rt{display:flex;align-items:flex-start;gap:1.1rem;margin-bottom:1.6rem;flex-wrap:wrap}
+.rbl{background:var(--gold);color:var(--navy);font-size:.65rem;font-weight:700;letter-spacing:.07em;padding:.32rem .85rem;border-radius:2px;white-space:nowrap;align-self:flex-start;margin-top:.25rem}
+.rttl{font-family:'Noto Serif KR',serif;font-size:1.25rem;font-weight:700;color:#fff;line-height:1.4}
+.rttl span{color:var(--gold2)}
+.rdesc{font-size:.84rem;color:var(--stone);line-height:1.85;margin-bottom:1.6rem}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+@media(max-width:700px){.rg{grid-template-columns:1fr}}
+.rp{background:rgba(255,255,255,.05);border:1px solid rgba(180,200,216,.1);border-radius:4px;padding:.95rem 1rem}
+.rp h5{font-size:.65rem;font-weight:700;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;margin-bottom:.35rem}
+.rp p{font-size:.78rem;color:var(--stone);line-height:1.65}
+footer{background:var(--navy);border-top:2px solid rgba(232,192,122,.45);padding:2.2rem 1.5rem;text-align:center}
+.fb{font-family:'Noto Serif KR',serif;font-size:.88rem;font-weight:700;color:var(--gold2);margin-bottom:.35rem}
+.fs{font-size:.74rem;color:var(--stone);margin-bottom:1rem;line-height:1.8}
+.fn{font-size:.67rem;color:rgba(139,158,181,.5)}
+.lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .2s;cursor:zoom-out}
+.lb.open{opacity:1;pointer-events:all}
+.lb img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:3px;box-shadow:0 0 80px rgba(0,0,0,.6);cursor:zoom-out}
+.lbx{position:absolute;top:1rem;right:1.2rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:1.3rem;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1}
+.lbx:hover{background:rgba(255,255,255,.25)}
+.fi{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.fi.vis{opacity:1;transform:none}
+.fi.d1{transition-delay:.1s}.fi.d2{transition-delay:.2s}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:rgba(201,168,76,.4);border-radius:3px}
+.footer-company{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:14px;
+margin-top:18px;
+color:#fff;
+font-size:.95rem;
+}
+
+.footer-company img{
+height:42px;
+width:auto;
+object-fit:contain;
+filter:brightness(0) invert(1);
+opacity:.95;
+}
+.ending{
+  min-height:100vh;
+  background:url('images/ending-rose.png') center/cover no-repeat;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:0 1.5rem 4rem;
+}
+
+.ending::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(15,9,24,.72) 0%,
+    rgba(15,9,24,.28) 45%,
+    rgba(15,9,24,.05) 100%
+  );
+}
+
+.ending-info{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  color:#fff;
+  max-width:760px;
+}
+
+.ending-info h2{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(1.7rem,3vw,2.6rem);
+  line-height:1.35;
+  color:#fff3fb;
+  margin-bottom:1rem;
+}
+
+.ending-info p{
+  font-size:.9rem;
+  color:#eadce8;
+  margin-bottom:.35rem;
+}
+.gold-title{
+  color:#f696ea;
+}
+.ending-company{
+  margin-top:1.4rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  color:#ffd79f;
+  font-weight:700;
+}
+
+.ending-company img{
+  height:42px;
+  width:auto;
+  filter:brightness(0) invert(1);
+}
+</style>
+</head>
+<body>
+
+<div class="lb" id="lb">
+  <button class="lbx" onclick="closeLb()">×</button>
+  <img id="lbi" src="" alt="확대"/>
+</div>
+
+<nav>
+  <div class="nav-in">
+    <a href="#home" class="nav-brand">포토존 디자인 제안</a>
+    <button class="hbg" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nl">
+      <li><a href="#overview" onclick="closeNav()">개요</a></li>
+      <li><a href="#comparison" onclick="closeNav()">시안 비교</a></li>
+      <li><a href="#details" onclick="closeNav()">상세 보기</a></li>
+      <li><a href="#recommendation" onclick="closeNav()">추천의견 검토안</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-body">
+    <div class="hero-label">장미 정원 포토존 · 2026</div>
+    <h1 id="heroTitle">기장군 정관 어린이도서관<br/><em>조형물 디자인 제안</em></h1>
+    <p id="heroSub">자연경관과 조화로운 포토존 설치를 위한 시안입니다.</p>
+    <div class="hero-btns">
+      <a href="#comparison" class="btn-g">시안 비교 보기</a>
+      </div>
+  </div>
+  <button class="edit-btn" onclick="toggleEdit()">⚙ 표지 편집</button>
+</section>
+
+<div class="edit-panel" id="ep">
+  <button class="ep-close" onclick="toggleEdit()">×</button>
+  <h4>표지 편집</h4>
+  <div class="ep-field">
+    <label>제목 (/ 로 줄바꿈, 두번째 줄은 강조색)</label>
+    <input type="text" id="etitle" placeholder="장미정원/포토존 디자인 제안"/>
+  </div>
+  <div class="ep-field">
+    <label>부제목</label>
+    <input type="text" id="esub" placeholder="부제목 입력..."/>
+  </div>
+  <div class="ep-field">
+    <label>배경 이미지 URL</label>
+    <input type="url" id="ebgurl" placeholder="https://..."/>
+  </div>
+  <div class="ep-field">
+    <label>배경 이미지 파일 업로드</label>
+    <input type="file" id="ebgfile" accept="image/*" style="font-size:.72rem;color:var(--stone2);width:100%"/>
+  </div>
+  <button class="ep-apply" onclick="applyEdit()">적용</button>
+</div>
+
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="ov-g">
+      <div class="fi">
+        <div class="kicker">프로젝트 개요</div>
+        <h2 class="ttl">포토존 디자인 제안</h2>
+        <p class="desc">“장미정원의 아름다움과 가족 친화적 공간의 가치를 담다”
+                         본 제안은 정관 어린이도서관 장미정원의 특성을 반영하여, 
+                         방문객들에게 새로운 볼거리와 체험 요소를 제공하기 위한 
+                         포토존 조성 계획입니다. 
+                         사랑스러운 캐릭터 조형물과 장미꽃잎을 형상화한 상징적 
+                         포토존을 통해 어린이와 가족이 함께 즐기고 
+                         추억을 남길 수 있는 공간을 제안합니다.</p>
+        <div class="spec-list">
+          <div class="sr"><span class="sl">위치</span><span class="sv">기장 정관 어린이도서관</span></div>
+          <div class="sr"><span class="sl">제안 시안</span><span class="sv">2종 (A·B안) 장미정원 포토존 조형물</span></div>
+          <div class="sr"><span class="sl">주요 재질</span><span class="sv">스테인리스 스틸, 광학산PC패널 외</span></div>
+          <div class="sr"><span class="sl">문서 번호</span><span class="sv">DR-2026-0609 (v1.0)</span></div>
+        </div>
+      </div>
+      <div class="fi d1">
+        <div class="ov-img">
+          <img src="images/c-main.png" alt="포토존 시안 이미지" onclick="openLb(this.src)"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="comparison">
+  <div class="wrap">
+    <div class="sh fi">
+      <div class="kicker" style="color:var(--gold)">시안 비교</div>
+      <h2 class="ttl lt">장미 정원 포토존 시안 한눈에 보기</h2>
+      <p class="desc" style="color:var(--stone)">카드를 클릭하면 상세 페이지로 이동합니다.</p>
+    </div>
+    <div class="cards fi d1">
+
+      <div class="card rec" onclick="goTo('det-a')">
+        <div class="bbadge">캐릭터 포토존</div>
+        <div class="ci"><img src="images/a-main.png" alt="A안" onclick="openLb(this.src);event.stopPropagation()"/></div>
+        <div class="cb">
+          <div class="ctag">A안</div>
+          <div class="cname">Rose Characters Garden<br/>캐릭터 포토존</div>
+          <div class="csumm">가족과 함께 즐기는 장미정원 포토존</div>
+        </div>
+      </div>
+
+      <div class="card" onclick="goTo('det-b')">
+        <div class="ci"><img src="images/b-main.png" alt="B안" onclick="openLb(this.src);event.stopPropagation()"/></div>
+        <div class="cb">
+          <div class="ctag">B안</div>
+          <div class="cname">장미꽃잎<br/>아치형 포토존</div>
+          <div class="csumm">장미꽃의 아름다움을 담은 프리미엄 포토존</div>
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="details">
+
+<div class="det" id="det-a">
+  <div class="wrap">
+    <div class="det-g fi">
+      <div class="img-row">
+        <div class="dim"><img src="images/a-main.png" alt="A안 투시도" onclick="openLb(this.src)"/></div>
+        <div class="dim"><img src="images/a-drawing.png" alt="A안 기술도면" onclick="openLb(this.src)"/></div>
+      </div>
+      <div class="di">
+        <div class="dbadge2"><span class="tag ta">A안</span><span class="trec">장미 캐릭터</span></div>
+        <div class="dtitle">ROSE CHARACTERS GARDEN 캐릭터 포토존</div>
+        <div class="dsumm">어린이와 가족이 함께 추억을 남길 수 있는 공간 연출</div>
+        <div class="dblocks">
+          <div class="db"><h5>디자인 콘셉트</h5><p>“장미꽃과 캐릭터를 결합한 가족 친화형 포토존으로, 어린이와 가족이 함께 추억을 남길 수 있는 공간입니다."</p></div>
+          <div class="db"><h5>주요 특징</h5>
+            <ul class="fl">
+              <li>장미꽃 형상 포토 프레임 / 캐릭터 조형물 포토존</li>
+              <li>가족 체험형 공간</li>
+              <li>어린이 친화적 디자인</li>
+              <li>주·야간 활용 가능</li>
+            </ul>
+          </div>
+          <div class="db"><h5>시공성 &amp; 유지관리</h5>
+            <div class="fbox">
+              <div class="fr"><span class="flbl">시공 난이도</span><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div><div class="dot"></div></div></div>
+              <div class="fr"><span class="flbl">유지 관리</span><div class="dots"><div class="dot b"></div><div class="dot b"></div><div class="dot b"></div><div class="dot"></div><div class="dot"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="det alt" id="det-b">
+  <div class="wrap">
+    <div class="det-g fi">
+      <div class="img-row">
+        <div class="dim"><img src="images/b-main.png" alt="B안 투시도" onclick="openLb(this.src)"/></div>
+        <div class="dim"><img src="images/b-drawing.png" alt="B안 기술도면" onclick="openLb(this.src)"/></div>
+      </div>
+      <div class="di">
+        <div class="dbadge2"><span class="tag tb">B안</span></div>
+        <div class="dtitle">ROSE PETAL GATE 장미의 결을 담은 프리미엄 포토존</div>
+        <div class="dsumm">직선의 폴리콘 리본 구조로 재해석한 프리미엄 포토존</div>
+        <div class="dblocks">
+          <div class="db"><h5>디자인 콘셉트</h5><p>장미꽃잎의 곡선을 모티브로 한 상징적 포토존으로, 장미정원의 랜드마크 역할을 수행합니다.</p></div>
+          <div class="db"><h5>주요 특징</h5>
+            <ul class="fl">
+              <li>장미꽃잎 아치 구조</li>
+              <li>상징성 높은 포토존</li>
+              <li>프리미엄 디자인 적용</li>
+              <li>포토 촬영 특화 공간, 공원 경관과 어울림 </li>
+            </ul>
+          </div>
+          <div class="db"><h5>시공성 &amp; 유지관리</h5>
+            <div class="fbox">
+              <div class="fr"><span class="flbl">시공 난이도</span><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div></div></div>
+              <div class="fr"><span class="flbl">유지관리</span><div class="dots"><div class="dot b"></div><div class="dot b"></div><div class="dot b"></div><div class="dot"></div><div class="dot"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<section class="sec" id="recommendation">
+  <div class="wrap">
+    <div class="sh fi">
+           <h2 class="ttl">포토존 조성 기대효과</h2>
+    </div>
+    <div class="rc fi d1">
+      <div class="rt">
+        <div class="rbl">조성 효과</div>
+        <div class="rttl"><span>Rose Characters Garden & Rose Petal Gate 포토존</span><br/>가족 친화형 문화공간 조성을 위한 포토존 설치 기대효과</div>
+      </div>
+      <p class="rdesc">장미정원과 어린이도서관의 특성을 반영한 포토존 조성 시 기대할 수 있는 주요 효과입니다.</p>
+      <div class="rg">
+        <div class="rp"><h5>가족 친화성</h5><p>어린이와 가족이 함께 즐길 수 있는 체험 공간을 제공합니다.</p></div>
+        <div class="rp"><h5>지역 상징성</h5><p>장미정원의 정체성을 반영한 대표 포토존으로 활용 가능합니다.</p></div>
+        <div class="rp"><h5>포토 콘텐츠</h5><p>기념 촬영과 SNS 공유를 통한 자연스러운 홍보 효과를 기대할 수 있습니다.</p></div>
+        <div class="rp"><h5>경관 개선</h5><p>공원 환경과 조화를 이루며 시각적 만족도를 향상시킵니다.</p></div>
+        <div class="rp"><h5>장기 활용성</h5><p>계절과 행사에 관계없이 지속적으로 활용 가능한 공간을 조성합니다.</p></div>
+        <div class="rp"><h5>관광 활성화</h5><p>포토존을 통한 방문객 유입과 재방문을 유도하여 공간 활용도를 높일 수 있습니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ending" id="ending">
+  <div class="ending-info">
+<h2>
+<span class="gold-title">정관 어린이도서관</span><br>
+장미정원 포토존 디자인 제안
+</h2>
+    <p>환경 인프라 개선 사업 · DR-2026-0609</p>
+    <p>본 문서는 검토용으로 작성된 제안서입니다.</p>
+    <div class="ending-company">
+      <span>010·6421·6518 TeamJ Design Studio</span>
+      <img src="images/logo.svg" alt="대륙건설광고공사 로고">
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleNav(){document.getElementById('nl').classList.toggle('open')}
+function closeNav(){document.getElementById('nl').classList.remove('open')}
+function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
+// LIGHTBOX — 이미지 클릭·배경 클릭·ESC 모두 닫힘
+function openLb(src){
+  const lb=document.getElementById('lb');
+  document.getElementById('lbi').src=src;
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow='';
+}
+// 라이트박스 클릭 (X버튼 제외 모두) → 닫기
+document.getElementById('lb').addEventListener('click',function(e){
+  if(!e.target.classList.contains('lbx'))closeLb();
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+
+// EDIT PANEL
+function toggleEdit(){
+  const p=document.getElementById('ep');
+  p.classList.toggle('open');
+  if(p.classList.contains('open')){
+    const t=document.getElementById('heroTitle').innerText.replace('\n','/');
+    document.getElementById('etitle').value=t;
+    document.getElementById('esub').value=document.getElementById('heroSub').innerText;
+  }
+}
+function applyEdit(){
+  const t=document.getElementById('etitle').value.trim();
+  const s=document.getElementById('esub').value.trim();
+  const url=document.getElementById('ebgurl').value.trim();
+  const file=document.getElementById('ebgfile').files[0];
+  if(t){
+    const pts=t.split('/');
+    if(pts.length>1) document.getElementById('heroTitle').innerHTML=pts[0].trim()+'<br/><em>'+pts[1].trim()+'</em>';
+    else document.getElementById('heroTitle').innerText=t;
+  }
+  if(s) document.getElementById('heroSub').innerText=s;
+  const bg=document.getElementById('heroBg');
+  if(file){
+    const r=new FileReader();
+    r.onload=ev=>{bg.style.backgroundImage='url('+ev.target.result+')';bg.style.opacity='.45'};
+    r.readAsDataURL(file);
+  } else if(url){
+    bg.style.backgroundImage='url('+url+')';
+    bg.style.opacity='.45';
+  }
+  document.getElementById('ep').classList.remove('open');
+}
+
+// FADE IN
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:.07,rootMargin:'0px 0px -25px 0px'});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
