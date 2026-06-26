@@ -129,7 +129,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#f21a85;backdrop-
 .kicker{font-size:.68rem;font-weight:600;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
 .ttl{font-family:'Noto Serif KR',serif;font-size:clamp(1.45rem,2.8vw,2rem);font-weight:700;color:var(--text);margin-bottom:.8rem;line-height:1.3}
 .ttl.lt{color:#fff}
-.desc{font-size:.87rem;color:var(--text3);line-height:1.8;max-width:560px}
+.desc{
+    font-size:.9rem;
+    color:var(--text3);
+    line-height:2;
+    max-width:580px;
+}
+.desc strong{
+    display:block;
+    font-size:1.08rem;
+    color:#fff;
+    font-weight:700;
+    margin-bottom:.9rem;
+}
 .sh{margin-bottom:2.8rem}
 .dark{
     background:linear-gradient(
@@ -378,20 +390,24 @@ opacity:.95;
   <div class="wrap">
     <div class="ov-g">
       <div class="fi">
-        <div class="kicker">프로젝트 개요</div>
-        <h2 class="ttl">포토존 디자인 제안</h2>
-        <p class="desc">“장미정원의 아름다움과 가족 친화적 공간의 가치를 담다”
-                         본 제안은 정관 어린이도서관 장미정원의 특성을 반영하여, 
-                         방문객들에게 새로운 볼거리와 체험 요소를 제공하기 위한 
-                         포토존 조성 계획입니다. 
-                         사랑스러운 캐릭터 조형물과 장미꽃잎을 형상화한 상징적 
-                         포토존을 통해 어린이와 가족이 함께 즐기고 
-                         추억을 남길 수 있는 공간을 제안합니다.</p>
+<div class="kicker">프로젝트 개요</div>
+
+<h2 class="ttl">장미정원 포토존 디자인 제안</h2>
+
+<p class="desc"><strong>“장미정원의 아름다움에 머물고, 특별한 추억을 남기다.”</strong></p>
+
+<p class="desc">
+본 제안은 윗골공원 장미정원의 아름다운 경관과 공간적 특성을 바탕으로, 방문객들이 자연 속에서 휴식과 체험을 함께 즐길 수 있는 포토존을 조성하는 계획입니다.
+</p>
+
+<p class="desc">
+장미를 모티브로 한 상징적인 조형물과 감성적인 휴게 공간을 통해 누구나 자연스럽게 머물고 사진을 남길 수 있는 공간을 제안하며, 장미정원의 새로운 랜드마크이자 지역을 대표하는 포토 스팟으로 활용될 수 있도록 계획하였습니다.
+</p>
         <div class="spec-list">
-          <div class="sr"><span class="sl">위치</span><span class="sv">기장 정관 어린이도서관</span></div>
+          <div class="sr"><span class="sl">위치</span><span class="sv">정관 윗골공원</span></div>
           <div class="sr"><span class="sl">제안 시안</span><span class="sv">2종 (A·B안) 장미정원 포토존 조형물</span></div>
           <div class="sr"><span class="sl">주요 재질</span><span class="sv">스테인리스 스틸, 광학산PC패널 외</span></div>
-          <div class="sr"><span class="sl">문서 번호</span><span class="sv">DR-2026-0609 (v1.0)</span></div>
+          <div class="sr"><span class="sl">문서 번호</span><span class="sv">DR-2026-0629 (v2.0)</span></div>
         </div>
       </div>
       <div class="fi d1">
@@ -414,11 +430,11 @@ opacity:.95;
 
       <div class="card rec" onclick="goTo('det-a')">
         <div class="bbadge">캐릭터 포토존</div>
-        <div class="ci"><img src="images/a-main.png" alt="A안" onclick="openLb(this.src);event.stopPropagation()"/></div>
+        <div class="ci"><img src="images/aa-main.png" alt="A안" onclick="openLb(this.src);event.stopPropagation()"/></div>
         <div class="cb">
           <div class="ctag">A안</div>
-          <div class="cname">Rose Characters Garden<br/>캐릭터 포토존</div>
-          <div class="csumm">가족과 함께 즐기는 장미정원 포토존</div>
+          <div class="cname">장미꽃잎<br/>아치형 포토존</div>
+          <div class="csumm">장미꽃의 아름다움을 담은 프리미엄 포토존</div>
         </div>
       </div>
 
@@ -426,8 +442,8 @@ opacity:.95;
         <div class="ci"><img src="images/b-main.png" alt="B안" onclick="openLb(this.src);event.stopPropagation()"/></div>
         <div class="cb">
           <div class="ctag">B안</div>
-          <div class="cname">장미꽃잎<br/>아치형 포토존</div>
-          <div class="csumm">장미꽃의 아름다움을 담은 프리미엄 포토존</div>
+          <div class="cname">장미꽃잎<br/>감성 포토존</div>
+          <div class="csumm">장미정원의 감성을 담은 힐링 포토존</div>
         </div>
       </div>
 
@@ -448,16 +464,16 @@ opacity:.95;
       </div>
       <div class="di">
         <div class="dbadge2"><span class="tag ta">A안</span><span class="trec">장미 캐릭터</span></div>
-        <div class="dtitle">ROSE CHARACTERS GARDEN 캐릭터 포토존</div>
-        <div class="dsumm">어린이와 가족이 함께 추억을 남길 수 있는 공간 연출</div>
+        <div class="dtitle">ROSE PETAL GATE 장미의 결을 담은 프리미엄 포토존</div>
+        <div class="dsumm">직선의 폴리콘 리본 구조로 재해석한 프리미엄 포토존</div>
         <div class="dblocks">
-          <div class="db"><h5>디자인 콘셉트</h5><p>“장미꽃과 캐릭터를 결합한 가족 친화형 포토존으로, 어린이와 가족이 함께 추억을 남길 수 있는 공간입니다."</p></div>
+          <div class="db"><h5>디자인 콘셉트</h5><p>장미꽃잎의 곡선을 모티브로 한 상징적 포토존으로, 장미정원의 랜드마크 역할을 수행합니다."</p></div>
           <div class="db"><h5>주요 특징</h5>
             <ul class="fl">
-              <li>장미꽃 형상 포토 프레임 / 캐릭터 조형물 포토존</li>
-              <li>가족 체험형 공간</li>
-              <li>어린이 친화적 디자인</li>
-              <li>주·야간 활용 가능</li>
+              <li>장미꽃잎 아치 구조</li>
+              <li>상징성 높은 랜드마크</li>
+              <li>프리미엄 공간 연출</li>
+              <li>포토 촬영 특화 공간, 공원 경관과 어울림 </li>
             </ul>
           </div>
           <div class="db"><h5>시공성 &amp; 유지관리</h5>
@@ -481,16 +497,16 @@ opacity:.95;
       </div>
       <div class="di">
         <div class="dbadge2"><span class="tag tb">B안</span></div>
-        <div class="dtitle">ROSE PETAL GATE 장미의 결을 담은 프리미엄 포토존</div>
-        <div class="dsumm">직선의 폴리콘 리본 구조로 재해석한 프리미엄 포토존</div>
+        <div class="dtitle">Rose Garden Healing Photo Zone 장미정원의 감성을 담은 힐링 포토존</div>
+        <div class="dsumm">무지개빛 투명 패널을 적용한 감성 포토존</div>
         <div class="dblocks">
-          <div class="db"><h5>디자인 콘셉트</h5><p>장미꽃잎의 곡선을 모티브로 한 상징적 포토존으로, 장미정원의 랜드마크 역할을 수행합니다.</p></div>
+          <div class="db"><h5>디자인 콘셉트</h5><p>빛의 변화에 따라 다양한 분위기를 연출하며, 감성과 휴식을 함께 담아낸 포토존입니다.</p></div>
           <div class="db"><h5>주요 특징</h5>
             <ul class="fl">
-              <li>장미꽃잎 아치 구조</li>
-              <li>상징성 높은 포토존</li>
-              <li>프리미엄 디자인 적용</li>
-              <li>포토 촬영 특화 공간, 공원 경관과 어울림 </li>
+              <li>기하학적 리본 구조</li>
+              <li>빛의 변화를 담은 공간 연출</li>
+              <li>감성적인 휴식 공간</li>
+              <li>공원 경관과 조화를 이루는 포토존</li>
             </ul>
           </div>
           <div class="db"><h5>시공성 &amp; 유지관리</h5>
@@ -515,16 +531,47 @@ opacity:.95;
     <div class="rc fi d1">
       <div class="rt">
         <div class="rbl">조성 효과</div>
-        <div class="rttl"><span>Rose Characters Garden & Rose Petal Gate 포토존</span><br/>가족 친화형 문화공간 조성을 위한 포토존 설치 기대효과</div>
-      </div>
-      <p class="rdesc">장미정원과 어린이도서관의 특성을 반영한 포토존 조성 시 기대할 수 있는 주요 효과입니다.</p>
-      <div class="rg">
-        <div class="rp"><h5>가족 친화성</h5><p>어린이와 가족이 함께 즐길 수 있는 체험 공간을 제공합니다.</p></div>
-        <div class="rp"><h5>지역 상징성</h5><p>장미정원의 정체성을 반영한 대표 포토존으로 활용 가능합니다.</p></div>
-        <div class="rp"><h5>포토 콘텐츠</h5><p>기념 촬영과 SNS 공유를 통한 자연스러운 홍보 효과를 기대할 수 있습니다.</p></div>
-        <div class="rp"><h5>경관 개선</h5><p>공원 환경과 조화를 이루며 시각적 만족도를 향상시킵니다.</p></div>
-        <div class="rp"><h5>장기 활용성</h5><p>계절과 행사에 관계없이 지속적으로 활용 가능한 공간을 조성합니다.</p></div>
-        <div class="rp"><h5>관광 활성화</h5><p>포토존을 통한 방문객 유입과 재방문을 유도하여 공간 활용도를 높일 수 있습니다.</p></div>
+<div class="rttl">
+  <span>Rose Ribbon Bench & Rose Petal Gate 포토존</span><br/>
+  장미정원의 새로운 랜드마크 조성을 위한 포토존 기대효과
+</div>
+
+<p class="rdesc">
+장미정원의 아름다운 경관과 조화를 이루는 포토존을 통해 방문객에게 새로운 공간 경험을 제공하고,
+지역의 대표적인 포토 명소로 활용될 수 있는 기대효과를 제안합니다.
+</p>
+
+<div class="rg">
+  <div class="rp">
+    <h5>랜드마크 조성</h5>
+    <p>장미정원을 대표하는 상징적인 포토존으로 새로운 공간 가치를 창출합니다.</p>
+  </div>
+
+  <div class="rp">
+    <h5>공간 활성화</h5>
+    <p>방문객이 자연스럽게 머무르고 휴식할 수 있는 체류형 공간을 제공합니다.</p>
+  </div>
+
+  <div class="rp">
+    <h5>포토 콘텐츠</h5>
+    <p>기념 촬영과 SNS 공유를 통해 자연스러운 홍보 효과를 기대할 수 있습니다.</p>
+  </div>
+
+  <div class="rp">
+    <h5>경관 향상</h5>
+    <p>장미정원과 조화를 이루는 디자인으로 공원의 품격과 경관을 향상시킵니다.</p>
+  </div>
+
+  <div class="rp">
+    <h5>사계절 활용</h5>
+    <p>계절과 행사에 관계없이 지속적으로 이용할 수 있는 포토 공간을 제공합니다.</p>
+  </div>
+
+  <div class="rp">
+    <h5>지역 관광 활성화</h5>
+    <p>지역의 대표 포토 스팟으로 자리매김하여 방문객 유입과 재방문을 유도합니다.</p>
+  </div>
+</div>
       </div>
     </div>
   </div>
@@ -533,7 +580,7 @@ opacity:.95;
 <section class="ending" id="ending">
   <div class="ending-info">
 <h2>
-<span class="gold-title">정관 어린이도서관</span><br>
+<span class="gold-title">정관 윗골공원</span><br>
 장미정원 포토존 디자인 제안
 </h2>
     <p>환경 인프라 개선 사업 · DR-2026-0609</p>
