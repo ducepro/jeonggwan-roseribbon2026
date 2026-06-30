@@ -167,7 +167,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#f21a85;backdrop-
 .sr{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid rgba(201,168,76,.12);font-size:.83rem}
 .sl{color:var(--stone)}
 .sv{font-weight:600;color:var(--gold3)}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1500px;margin:0 auto}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1500px;margin:0 auto}
 @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.cards{grid-template-columns:1fr}}
 .card{background:rgba(255,255,255,.05);border:2px solid rgba(201,168,76,.5);border-radius:6px;overflow:hidden;cursor:pointer;transition:transform .22s,box-shadow .22s;position:relative}
@@ -243,8 +243,18 @@ footer{background:var(--navy);border-top:2px solid rgba(232,192,122,.45);padding
 .lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .2s;cursor:zoom-out}
 .lb.open{opacity:1;pointer-events:all}
 .lb img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:3px;box-shadow:0 0 80px rgba(0,0,0,.6);cursor:zoom-out}
+#lbv{
+  display:none;
+  max-width:90vw;
+  max-height:90vh;
+  border-radius:3px;
+}
 .lbx{position:absolute;top:1rem;right:1.2rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:1.3rem;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1}
 .lbx:hover{background:rgba(255,255,255,.25)}
+.video-zoom-overlay{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
+.video-zoom-overlay.open{display:flex}
+.video-zoom-overlay video{max-width:92vw;max-height:90vh;border-radius:4px;box-shadow:0 0 80px rgba(0,0,0,.6)}
+#cVideoWrap{cursor:zoom-in}
 .fi{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
 .fi.vis{opacity:1;transform:none}
 .fi.d1{transition-delay:.1s}.fi.d2{transition-delay:.2s}
@@ -329,6 +339,13 @@ opacity:.95;
   width:auto;
   filter:brightness(0) invert(1);
 }
+.proposal-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:3px;
+  display:block;
+}
 </style>
 </head>
 <body>
@@ -336,8 +353,12 @@ opacity:.95;
 <div class="lb" id="lb">
   <button class="lbx" onclick="closeLb()">×</button>
   <img id="lbi" src="" alt="확대"/>
+  <video id="lbv" controls></video>
 </div>
 
+<div class="video-zoom-overlay" id="videoZoomOverlay">
+  <video id="videoZoomEl" src="images/rose-day-night.mp4" autoplay muted loop playsinline></video>
+</div>
 <nav>
   <div class="nav-in">
     <a href="#home" class="nav-brand">포토존 디자인 제안</a>
@@ -346,7 +367,7 @@ opacity:.95;
       <li><a href="#overview" onclick="closeNav()">개요</a></li>
       <li><a href="#comparison" onclick="closeNav()">시안 비교</a></li>
       <li><a href="#details" onclick="closeNav()">상세 보기</a></li>
-      <li><a href="#recommendation" onclick="closeNav()">개대 효과</a></li>
+      <li><a href="#recommendation" onclick="closeNav()">기대 효과</a></li>
     </ul>
   </div>
 </nav>
@@ -355,7 +376,7 @@ opacity:.95;
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-body">
     <div class="hero-label">장미 정원 포토존 · 2026</div>
-    <h1 id="heroTitle">기장군 정관 어린이도서관<br/><em>조형물 디자인 제안</em></h1>
+    <h1 id="heroTitle">기장군 정관 윗골공원 장미정원<br/><em>조형물 디자인 제안</em></h1>
     <p id="heroSub">자연경관과 조화로운 포토존 설치를 위한 시안입니다.</p>
     <div class="hero-btns">
       <a href="#comparison" class="btn-g">시안 비교 보기</a>
@@ -405,14 +426,14 @@ opacity:.95;
 </p>
         <div class="spec-list">
           <div class="sr"><span class="sl">위치</span><span class="sv">정관 윗골공원</span></div>
-          <div class="sr"><span class="sl">제안 시안</span><span class="sv">2종 (A·B안) 장미정원 포토존 조형물</span></div>
+          <div class="sr"><span class="sl">제안 시안</span><span class="sv">3종 (A·B·C안) 장미정원 포토존 조형물</span></div>
           <div class="sr"><span class="sl">주요 재질</span><span class="sv">스테인리스 스틸, 광학산PC패널 외</span></div>
           <div class="sr"><span class="sl">문서 번호</span><span class="sv">DR-2026-0629 (v2.0)</span></div>
         </div>
       </div>
       <div class="fi d1">
         <div class="ov-img">
-          <img src="images/c-main.png" alt="포토존 시안 이미지" onclick="openLb(this.src)"/>
+          <img src="images/cc-main.png" alt="포토존 시안 이미지" onclick="openLb(this.src)"/>
         </div>
       </div>
     </div>
@@ -447,6 +468,15 @@ opacity:.95;
         </div>
       </div>
 
+      <div class="card" onclick="goTo('det-c')">
+        <div class="ci"><img src="images/c-main.png" alt="C안" onclick="openLb(this.src);event.stopPropagation()"/></div>
+        <div class="cb">
+          <div class="ctag">C안</div>
+          <div class="cname">장미정원<br/>야간 힐링 포토존</div>
+          <div class="csumm">은은한 조명과 장미가 어우러진 감성 야간 포토존</div>
+        </div>
+      </div>
+
       </div>
 
     </div>
@@ -478,8 +508,8 @@ opacity:.95;
           </div>
           <div class="db"><h5>시공성 &amp; 유지관리</h5>
             <div class="fbox">
-              <div class="fr"><span class="flbl">시공 난이도</span><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div><div class="dot"></div></div></div>
-              <div class="fr"><span class="flbl">유지 관리</span><div class="dots"><div class="dot b"></div><div class="dot b"></div><div class="dot b"></div><div class="dot"></div><div class="dot"></div></div></div>
+              <div class="fr"><span class="flbl">시공 난이도</span><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div></div></div>
+              <div class="fr"><span class="flbl">유지 관리</span><div class="dots"><div class="dot b"></div><div class="dot b"></div><div class="dot b"></div><div class="dot b"></div><div class="dot"></div></div></div>
             </div>
           </div>
         </div>
@@ -521,6 +551,40 @@ opacity:.95;
   </div>
 </div>
 
+<div class="det" id="det-c">
+  <div class="wrap">
+    <div class="det-g fi">
+      <div class="img-row">
+<div class="dim" id="cVideoWrap" onclick="toggleVideoZoom(event)">
+<video id="cVideo" class="proposal-video" src="images/rose-day-night.mp4" autoplay muted loop playsinline></video></div>
+        <div class="dim"><img src="images/c-main_TC.png" alt="C안 기술도면" onclick="openLb(this.src)"/></div>
+      </div>
+      <div class="di">
+        <div class="dbadge2"><span class="tag tc">C안</span></div>
+        <div class="dtitle">Rose Glass Pavilion 장미와 빛이 머무는 정원</div>
+        <div class="dsumm">은은한 조명과 장미가 어우러진 감성 야간 포토존</div>
+        <div class="dblocks">
+          <div class="db"><h5>디자인 콘셉트</h5><p>장미와 빛의 색채를 모티브로 한 감성형 포토존으로, 다이크로익 필름을 적용한 PC 패널이 시간에 따라 변화하는 아름다운 색감을 연출합니다.</p></div>
+          <div class="db"><h5>주요 특징</h5>
+            <ul class="fl">
+             <li>다이크로익 필름 적용 PC패널과 장미 패턴 조형물</li>
+             <li>빛과 색채가 어우러지는 감성형 포토존</li>
+             <li>벤치와 일체화된 휴식·체험 공간 조성</li>
+             <li>가족·연인·관광객 모두가 즐기는 포토 스팟</li>
+            </ul>
+          </div>
+          <div class="db"><h5>시공성 &amp; 유지관리</h5>
+            <div class="fbox">
+              <div class="fr"><span class="flbl">시공 난이도</span><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div></div></div>
+              <div class="fr"><span class="flbl">유지관리</span><div class="dots"><div class="dot b"></div><div class="dot b"></div><div class="dot b"></div><div class="dot b"></div><div class="dot"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <section class="sec" id="recommendation">
@@ -538,7 +602,8 @@ opacity:.95;
 
 <p class="rdesc">
 장미정원의 아름다운 경관과 조화를 이루는 포토존을 통해 방문객에게 새로운 공간 경험을 제공하고,
-지역의 대표적인 포토 명소로 활용될 수 있는 기대효과를 제안합니다.
+지역의 대표적인 포토 명소로 활용될 수 있는 기대효과를 제안합니다. 
+<p>모든 시안은 시뮬레이션 이미지이며, 실제 시공 결과와 차이가 있을 수 있습니다.</p>
 </p>
 
 <div class="rg">
@@ -571,7 +636,7 @@ opacity:.95;
     <h5>지역 관광 활성화</h5>
     <p>지역의 대표 포토 스팟으로 자리매김하여 방문객 유입과 재방문을 유도합니다.</p>
   </div>
-</div>
+ </div>
       </div>
     </div>
   </div>
@@ -596,6 +661,32 @@ opacity:.95;
 function toggleNav(){document.getElementById('nl').classList.toggle('open')}
 function closeNav(){document.getElementById('nl').classList.remove('open')}
 function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
+// VIDEO ZOOM TOGGLE — C안 동영상 클릭 시 확대, 다시 클릭하면 원위치
+function toggleVideoZoom(e){
+  if(e) e.stopPropagation();
+  const overlay=document.getElementById('videoZoomOverlay');
+  const overlayVideo=document.getElementById('videoZoomEl');
+  const src=document.getElementById('cVideo');
+  if(overlay.classList.contains('open')){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+  } else {
+    overlayVideo.currentTime = src.currentTime;
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    overlayVideo.play().catch(()=>{});
+  }
+}
+document.getElementById('videoZoomOverlay').addEventListener('click',function(e){
+  toggleVideoZoom();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    const overlay=document.getElementById('videoZoomOverlay');
+    if(overlay.classList.contains('open')) toggleVideoZoom();
+  }
+});
 
 // LIGHTBOX — 이미지 클릭·배경 클릭·ESC 모두 닫힘
 function openLb(src){
